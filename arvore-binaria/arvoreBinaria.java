@@ -39,12 +39,14 @@ public class ArvoreBinaria implements ArvoreB {
 
 	}
 	
-//	/** retorna os filhos de um nï¿½ */
-//	public Iterator children(nodeArvoreB v)
-//	{
-//		nodeArvoreB n = (nodeArvoreB) v;
-//		return n.children();
-//	}
+	public Iterator children(nodeArvoreB v)
+	{
+		nodesArvore = new ArrayList<>();
+		nodesArvore.add(v.getNodeFilhoD());
+		nodesArvore.add(v.getNodeFilhoE());
+		nodesArvoreI = nodesArvore.iterator();
+		return nodesArvoreI;
+	}
 	
 	public boolean isInternal(nodeArvoreB v) {
 		nodeArvoreB n = (nodeArvoreB) v;
@@ -77,7 +79,7 @@ public class ArvoreBinaria implements ArvoreB {
 		nodeArvoreB n = (nodeArvoreB) v;
 		elemento = n.getElemento();
 		
-//		nÃ£o tem filhos, e adiciona de acordo com a restriÃ§Ã£o da Ã¡rvore binÃ¡ria.
+//		não tem filhos, e adiciona de acordo com a restrição da árvore binária.
 		if(isExternal(n)){
 			System.out.println("Entrou no primeiro if");
 			novoNo = new nodeArvoreB();
@@ -120,14 +122,14 @@ public class ArvoreBinaria implements ArvoreB {
 //methods arvore binaria.
 	public nodeArvoreB leftChild(nodeArvoreB n) throws InvalidPositionException{
 		if (!hasLeft(n)){
-			throw new InvalidPositionException("Filho da esquerda nÃ£o existe");
+			throw new InvalidPositionException("Filho da esquerda não existe");
 		} 
 		return n.getNodeFilhoE();
 	}
 	
 	public nodeArvoreB rightChild(nodeArvoreB n) throws InvalidPositionException {
 		if (!hasRight(n)){
-			throw new InvalidPositionException("Filho da direita nÃ£o existe");
+			throw new InvalidPositionException("Filho da direita não existe");
 		}
 		return n.getNodeFilhoD();
 	}
@@ -213,19 +215,19 @@ public class ArvoreBinaria implements ArvoreB {
 		nodeArvoreB n = (nodeArvoreB) v;
 		elemento = n.getElemento();
 		
-//		se nÃ£o tem filho e Ã© raiz.
+//		se não tem filho e é raiz.
 		if(isRoot(n) && isExternal(n)){
 			nodeRoot=null;
 			tamanho--;
 			
-//		se ele tiver pai e nÃ£o tiver filho.
+//		se ele tiver pai e não tiver filho.
 		} else if(parent(n)!=null && isExternal(n)){
 			nodePai = n.getNodePai();
-//		verifica se Ã© o filho da esquerda.
+//		verifica se é o filho da esquerda.
 			if (nodePai.getNodeFilhoE()==n){
 				nodePai.setNodeFilhoE(null);
 			} 
-//			verifica se Ã© o filho da direita.
+//			verifica se é o filho da direita.
 			if (nodePai.getNodeFilhoD()==n){
 				nodePai.setNodeFilhoD(null);
 			}
@@ -287,24 +289,32 @@ public class ArvoreBinaria implements ArvoreB {
 //	public Object remove(nodeArvoreB v) throws InvalidPositionException { //public Object remove(Position v)
 //		nodeArvore n = (nodeArvore) v;
 //		nodeArvore pai = n.getPai(); //NoArvore pai = n.parent();
-//		if (pai != null || isExternal(n)) //se ele nÃ£o tiver filho.
+//		if (pai != null || isExternal(n)) //se ele não tiver filho.
 //			pai.removeChild(n);
 //		else
-//			throw new InvalidPositionException("PosiÃ§Ã£o Invalida.");
+//			throw new InvalidPositionException("Posição Invalida.");
 //		Object o = n.element();
 //		tamanho--;
 //		return o;
 //	}
 //	
-	/** Troca dois elementos de posiï¿½ï¿½o */
-	public void swapElements(nodeArvoreB v, nodeArvoreB w){
-		int element = v.getElemento();
-		int element2 = w.getElemento();
-		v.setElemento(element2);
-		w.setElemento(element);
-	}
 	
-	/** Retorna a profundidade de um nï¿½ */
+//	public void swapElements(nodeArvoreB v, nodeArvoreB w){
+//		int element = v.getElemento();
+//		int element2 = w.getElemento();
+//		v.setElemento(element2);
+//		w.setElemento(element);
+//	}
+//	
+	
+
+//	public int replace(nodeArvoreB v, int o) {
+//		// TODO Auto-generated method stub
+//		int elemento = v.getElemento();
+//		v.setElemento(o);
+//		return elemento;
+//	}
+	
 	public int depth(nodeArvoreB v)
 	{
 		nodeArvoreB n = (nodeArvoreB) v;
@@ -314,11 +324,9 @@ public class ArvoreBinaria implements ArvoreB {
 			return 1+depth(n.getNodePai());
 	}
 	
-	
-	/** Retorna a altura da ï¿½rvore */
 	public int height(nodeArvoreB n) {
 		if(n == null || isExternal(n)) {
-			return -1;
+			return 0;
 		}
 		else {
 			return 1 + Math.max(height(n.getNodeFilhoE()), height(n.getNodeFilhoD()));
@@ -327,15 +335,15 @@ public class ArvoreBinaria implements ArvoreB {
 //	
 	
 	
-	public Iterator elements(nodeArvoreB n) {
-		nodesArvoreI = inOrder(n, true).iterator();
+	public Iterator elements() {
+		nodesArvoreI = inOrder(nodeRoot, true).iterator();
 		return nodesArvoreI;
 	}
 	
 	
-	public Iterator positions(nodeArvoreB n)
+	public Iterator nos()
 	{
-		nodesArvoreI = inOrder(n,true).iterator();
+		nodesArvoreI = inOrder(nodeRoot,true).iterator();
 		return nodesArvoreI;
 	}
 	
@@ -353,54 +361,43 @@ public class ArvoreBinaria implements ArvoreB {
 		
 		nodesArvore = inOrder(nodeRoot, true);
 		String arvore = " "; 
+		System.out.println(nodesArvore.size());
 		String [][] tree = new String [height(nodeRoot)+1][nodesArvore.size()];
 		
 		for (int i=0; i<nodesArvore.size(); i++){
 			node = nodesArvore.get(i);
+//			System.out.println(depth(node));
 			tree[depth(node)][i] = Integer.toString(node.getElemento());
 		}
 		
-		for (int i=0; i<height(nodeRoot); i++){
+		for (int i=0; i<height(nodeRoot)+1; i++){
 			for (int k=0; k<nodesArvore.size(); k++){
-				tree[i][k]+=arvore;
+				if (tree[i][k]==null){
+					arvore+="    ";
+				} else {
+					arvore+=tree[i][k];
+					arvore+="    ";
+				}
+				//				System.out.println(tree[i][k]);
 			}
+			arvore+="\n";
 		}
 		
+		System.out.println(arvore);
+//		
 //		return arvore;
 	}
-	
+
 	@Override
 	public int replace(nodeArvoreB v, int o) {
 		// TODO Auto-generated method stub
-		int elemento = v.getElemento();
-		v.setElemento(o);
-		return elemento;
-	}
-
-	@Override
-	public int height() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
-
-	@Override
-	public Iterator elements() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Iterator nos() {
-		
-		return null;
-	}
-
-	@Override
-	public Iterator children(nodeArvoreB v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	
+	@Override
+	public void swapElementos(nodeArvoreB n, nodeArvoreB v) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

@@ -16,20 +16,20 @@ public class MainArvoreB {
 		try {
 			ab.addChild(nodeab, 20);
 			ab.addChild(nodeab, 5);
-//			ab.addChild(nodeab, 50);
-//			ab.addChild(nodeab, 10);
-//			ab.addChild(nodeab, 60);
-//			ab.addChild(nodeab, 8);
-//			ab.addChild(nodeab, 7);
-//			ab.addChild(nodeab, 49);
-//			ab.addChild(nodeab, 48);
+			ab.addChild(nodeab, 50);
+			ab.addChild(nodeab, 10);
+			ab.addChild(nodeab, 60);
+			ab.addChild(nodeab, 8);
+			ab.addChild(nodeab, 7);
+			ab.addChild(nodeab, 49);
+			ab.addChild(nodeab, 48);
 		}catch(InvalidPositionException ipex){
 			System.out.println(ipex.getMessage());
 		}
 		
 		
-		System.out.println("Altura" + ab.height(nodeab));
-		System.out.println("Profundidade" + ab.depth(nodeab));
+		System.out.println("Altura:" + ab.height(nodeab));
+		System.out.println("Profundidade:" + ab.depth(nodeab));
 //	
 //		ab.inOrder(nodeab);
 ////		System.out.println(ab.height(nodeab));
