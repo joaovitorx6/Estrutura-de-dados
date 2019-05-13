@@ -22,9 +22,11 @@ public class Map {
 			throw new invalidKeyException("Chave invalida.");
 		} else {
 			if (a[hash].getKey()==k){
+				System.out.println("Entrou");
 				element = a[hash].getElement();
 				return element;
 			} else {
+				System.out.println("Entrou 2");
 				lista = a[hash].getLista();
 				for (int i=0; i<lista.size(); i++){
 					if (lista.get(i).getKey()==k){
@@ -39,10 +41,13 @@ public class Map {
 	
 	public void insertItem(int k, int e){
 		hash = k%a.length;
+		System.out.println(hash);
 		if (a[hash]==null){
+			System.out.println("entrou");
 			n = new node(e,k);
 			a[hash]=n;
 		} else {
+			System.out.println("entrou 2");
 			n = new node ();
 			n.setElement(e);
 			n.setKey(k);
