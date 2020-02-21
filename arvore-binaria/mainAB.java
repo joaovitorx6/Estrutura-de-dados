@@ -1,56 +1,39 @@
-package Arvore;
-import java.util.Scanner;
+package arvoreBinaria;
 import java.util.ArrayList;
+import java.util.Scanner;
 
-public class MainArvoreB {
+public class mainAB {
 
 	public static void main(String[] args) {
-		Scanner input = new Scanner(System.in);
-		nodeArvoreB nodeab, node; 
-		int elemento;
-		ArvoreBinaria ab = new ArvoreBinaria(10);
-		ArrayList <nodeArvoreB> nodesArvore;
-		System.out.println("Raiz:" + ab.root().getElemento());
-		nodeab=ab.root();
+		// TODO Auto-generated method stub
+		Scanner entrada = new Scanner(System.in);
+		nodeAB nodeTeste = new nodeAB();
+		nodeAB nodeTree; 
+		ArrayList <nodeAB> nodesTree;
+		int sizeTree, i;
+		String treeView;
 		
 		try {
-			ab.addChild(nodeab, 20);
-			ab.addChild(nodeab, 5);
-			ab.addChild(nodeab, 50);
-			ab.addChild(nodeab, 10);
-			ab.addChild(nodeab, 60);
-			ab.addChild(nodeab, 8);
-			ab.addChild(nodeab, 7);
-			ab.addChild(nodeab, 49);
-			ab.addChild(nodeab, 48);
+			arvoreB tree = new arvoreB(40); 
+			
+			nodeTree = tree.root();
+			
+			tree.addChild(nodeTree, 50);
+			tree.addChild(nodeTree, 30);
+			
+			treeView = tree.viewTree(nodeTree);
+			System.out.println(treeView);
+			
+//			nodesTree = tree.posOrder(nodeTree, true);
+//			sizeTree = nodesTree.size();
+			
+//			for (i=0; i<sizeTree; i++) {
+//				System.out.println(nodesTree.get(i).getElemento());
+//			}
+			
 		}catch(InvalidPositionException ipex){
 			System.out.println(ipex.getMessage());
 		}
-		
-		
-		System.out.println("Altura:" + ab.height(nodeab));
-		System.out.println("Profundidade:" + ab.depth(nodeab));
-//	
-//		ab.inOrder(nodeab);
-////		System.out.println(ab.height(nodeab));
-//		
-//		ab.remove(nodeab);
-//		node = ab.find(nodeab, 50);
-//		System.out.println(node.getElemento());
-//		ab.remove(node);
-//		
-//		ab.preOrder(nodeab);
-		
-//		System.out.println(nodeab.getElemento());
-//		System.out.println(nodeab.getNodeFilhoD().getElemento());
-//		System.out.println(nodeab.getNodeFilhoE().getElemento());
-//		
-//		nodesArvore = ab.inOrder(nodeab, true);
-//		for (int i=0; i<nodesArvore.size(); i++){
-//			System.out.println(nodesArvore.get(i).getElemento() + " + ");
-//		}
-		
-		ab.mostrarArvore(nodeab);
-		
 	}
+
 }

@@ -1,50 +1,50 @@
-package Arvore;
+package arvoreBinaria;
 
-public class nodeArvoreB {
+public class nodeAB {
 	
 	int elemento;
-	nodeArvoreB nodePai;
-	nodeArvoreB nodeFilhoE;
-	nodeArvoreB nodeFilhoD;
+	nodeAB nodePai;
+	nodeAB nodeFE;
+	nodeAB nodeFD;
 	
 	//	construct
-	public nodeArvoreB(){
+	public void nodeArvoreB(){
 		elemento = 0;
 		nodePai = null;
-		nodeFilhoE = null;
-		nodeFilhoD = null;
+		nodeFE = null;
+		nodeFD = null;
 	}
 	
 	public int getElemento() {
 		return elemento;
 	}
 	
-	public nodeArvoreB getNodePai() {
+	public nodeAB getNodePai() {
 		return nodePai;
 	}
 	
-	public nodeArvoreB getNodeFilhoD() {
-		return nodeFilhoD;
+	public nodeAB getnodeFD() {
+		return nodeFD;
 	}
 	
-	public nodeArvoreB getNodeFilhoE() {
-		return nodeFilhoE;
+	public nodeAB getnodeFE() {
+		return nodeFE;
 	}
 
 	public void setElemento(int elemento) {
 		this.elemento = elemento;
 	}
 	
-	public void setNodePai(nodeArvoreB nodePai) {
+	public void setNodePai(nodeAB nodePai) {
 		this.nodePai = nodePai;
 	}
 	
-	public void setNodeFilhoE(nodeArvoreB nodeFilhoE) {
-		this.nodeFilhoE = nodeFilhoE;
+	public void setnodeFE(nodeAB nodeFE) {
+		this.nodeFE = nodeFE;
 	}
 	
-	public void setNodeFilhoD(nodeArvoreB nodeFilhoD) {
-		this.nodeFilhoD = nodeFilhoD;
+	public void setnodeFD(nodeAB nodeFD) {
+		this.nodeFD = nodeFD;
 	}
 	
 	

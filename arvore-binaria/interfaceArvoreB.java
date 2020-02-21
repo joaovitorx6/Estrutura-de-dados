@@ -1,41 +1,42 @@
-package Arvore;
+package arvoreBinaria;
 
 import java.util.Iterator;
 
-public interface ArvoreB {
-	/* Métodos genéricos */
-	/** Retorna o número de nós da árvore */
+public interface interfaceArvoreB {
+	/* Mï¿½todos genï¿½ricos */
+	/** Retorna o nï¿½mero de nï¿½s da ï¿½rvore */
 	public int size();
-	/** retorna se a árvore está vazia */
+	/** retorna se a ï¿½rvore estï¿½ vazia */
 	public boolean isEmpty();
-	/** Retorna a altura da árvore */
-	public int height(nodeArvoreB n);
-	/** Retorna um iterator com os elementos armazenados na árvore */
+	/** Retorna a altura da ï¿½rvore */
+	public int height(nodeAB n);
+	/** Retorna um iterator com os elementos armazenados na ï¿½rvore */
 	public Iterator elements();
-	/** Retorna um iterator com as posições (nós) da árvore */
+	/** Retorna um iterator com as posiï¿½ï¿½es (nï¿½s) da ï¿½rvore */
 	public Iterator nos();
 
-	/* Métodos de acesso*/
-	/** Retorna a raiz da árvore */
-	public nodeArvoreB root();
-	/** Retorna o nó pai de um nó */
-	public nodeArvoreB parent(nodeArvoreB v);
-	/** Retorna os filhos de um nó */
-	public Iterator children(nodeArvoreB v);
+	/* Mï¿½todos de acesso*/
+	/** Retorna a raiz da ï¿½rvore */
+	public nodeAB root();
+	/** Retorna o nï¿½ pai de um nï¿½ */
+	public nodeAB parent(nodeAB v);
+	/** Retorna os filhos de um nï¿½ */
+	public Iterator children(nodeAB v);
 
-	/* Métodos de consulta */
-	/** Testa se um nó é interno */
-	public boolean isInternal(nodeArvoreB v);
-	/** Testa se um nó é externo*/
-	public boolean isExternal(nodeArvoreB v);
-	/** Testa se um nó é a raiz */
-	public boolean isRoot(nodeArvoreB v);
-	/** Retorna a profundidade de um nó */
-	public int depth(nodeArvoreB v);
+	/* Mï¿½todos de consulta */
+	/** Testa se um nï¿½ ï¿½ interno */
+	public boolean isInternal(nodeAB v);
+	/** Testa se um nï¿½ ï¿½ externo*/
+	public boolean isExternal(nodeAB v);
+	/** Testa se um nï¿½ ï¿½ a raiz */
+	public boolean isRoot(nodeAB v);
+	/** Retorna a profundidade de um nï¿½ */
+	public int depth(nodeAB v);
 
-	/* Métodos de atualização */
-	/** Substitui o objeto de um um nó */
-	public int replace(nodeArvoreB v, int o);
-	/** Retorna a profundidade de um nó */
-	public void swapElementos(nodeArvoreB n, nodeArvoreB v);
+	/* Mï¿½todos de atualizaï¿½ï¿½o */
+	/** Substitui o objeto de um um nï¿½ */
+	public int replace(nodeAB v, int o);
+	/** Retorna a profundidade de um nï¿½ */
+	public void swapElementos(nodeAB n, nodeAB v);
 }
+
