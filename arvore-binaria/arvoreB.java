@@ -280,7 +280,50 @@ public class arvoreB implements interfaceArvoreB {
 				
 				nodeZ = findNodeForRemove(nodeT.getnodeFD());
 // 				verificar se o que está sendo removido é o esquerdo ou direito, pra setar a referencia para o pai.
-				nodeZ.getNodePai().setnodeFE(null);
+				
+				System.out.println(nodeZ.getElemento());
+				
+//				mudando as referências caso o node escolhido seja o filho da direita do node escolhido.
+				if (nodeZ.getNodePai().getnodeFD()==nodeZ) {
+					
+					nodeZ.getNodePai().setnodeFD(null);
+					nodeT.getNodePai().setnodeFD(nodeZ);
+					
+					nodeT.getnodeFE().setNodePai(nodeT);
+					nodeZ.setnodeFE(nodeT.getnodeFE());
+					
+					nodeZ.setNodePai(nodeT.getNodePai());
+					
+//					verificando se o node removido tem filho da esquerda.
+//					if (nodeT.getnodeFE()!=null) {
+//				     nodeT.getnodeFE().setNodePai(nodeZ);
+//					 nodeZ.setnodeFE(nodeT.getnodeFE());
+//					}
+					
+//					mudando as referências caso o node escolhido seja o filho da esquerda.
+				} else if (nodeZ.getNodePai().getnodeFE()==nodeZ) {
+					
+//					verificando se o node escolhido tem filho da direita.
+					if (nodeZ.getnodeFD()!=null) {
+						nodeZ.getnodeFD().setNodePai(nodeZ.getNodePai());
+						nodeZ.getNodePai().setnodeFE(nodeZ.getnodeFE());
+					} else {
+						nodeZ.getNodePai().setnodeFE(null);
+						nodeZ.setnodeFD(nodeZ.getNodePai());
+						
+						nodeZ.setNodePai(nodeT.getNodePai());
+						nodeT.getNodePai().setnodeFD(nodeZ);
+						
+//						verificando se o node removido tem filho da esquerda.
+//						if (nodeT.getnodeFE()!=null) {
+//					     nodeT.getnodeFE().setNodePai(nodeZ);
+//						 nodeZ.setnodeFE(nodeT.getnodeFE());
+//						}
+					}
+
+				}
+				
+//				nodeZ.getNodePai().setnodeFD(null);
 				nodeT.setElemento(nodeZ.getElemento());
 				nodeZ = null;
 				tamanho--;

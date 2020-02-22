@@ -14,12 +14,20 @@ public class mainAB {
 		String treeView;
 		
 		try {
-			arvoreB tree = new arvoreB(40); 
+			arvoreB tree = new arvoreB(60); 
 			
 			nodeTree = tree.root();
 			
-			tree.addChild(nodeTree, 50);
-			tree.addChild(nodeTree, 30);
+			tree.addChild(nodeTree, 40);
+			tree.addChild(nodeTree, 65);
+			tree.addChild(nodeTree, 64);
+			tree.addChild(nodeTree, 68);
+			tree.addChild(nodeTree, 66);
+			tree.addChild(nodeTree, 69);
+			
+			nodeTeste = nodeTree.getnodeFD();
+//			
+			tree.remove(nodeTeste);
 			
 			treeView = tree.viewTree(nodeTree);
 			System.out.println(treeView);
