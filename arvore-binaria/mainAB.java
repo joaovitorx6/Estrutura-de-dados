@@ -18,16 +18,17 @@ public class mainAB {
 			
 			nodeTree = tree.root();
 			
-			tree.addChild(nodeTree, 40);
 			tree.addChild(nodeTree, 65);
 			tree.addChild(nodeTree, 64);
+			tree.addChild(nodeTree, 40);
 			tree.addChild(nodeTree, 68);
 			tree.addChild(nodeTree, 66);
 			tree.addChild(nodeTree, 69);
+//			tree.addChild(nodeTree, 3);
 			
 			nodeTeste = nodeTree.getnodeFD();
 //			
-			tree.remove(nodeTeste);
+			System.out.println(tree.remove(65));
 			
 			treeView = tree.viewTree(nodeTree);
 			System.out.println(treeView);

@@ -230,11 +230,26 @@ public class arvoreB implements interfaceArvoreB {
 		return nodesTree;
 	}
 	
+//	metodo pra encontrar node especifico na arvore. 
+	public nodeAB findNode(int elemento) {
+		nodesTree = inOrder(nodeRaiz, true);
+		int size = nodesTree.size();
+		for (int i=0; i<size; i++) {
+			if (nodesTree.get(i).getElemento()==elemento) {
+				return nodesTree.get(i);
+			}
+		}
+		return null;
+	}
+	
 //	metodo para remover um node.
-	public int remove(nodeAB node) { //public Object remove(Position v)
+	public int remove(int elemento) { //public Object remove(Position v)
 		
+//		node que vai ser o novo node no lugar do node que sera removido.
 		nodeAB nodeZ;
-		nodeAB nodeT = (nodeAB) node;
+//		node que vai ser removido.
+		nodeAB nodeT = findNode(elemento);
+		
 		int elementoT = nodeT.getElemento();
 		int elementoD; 
 		
@@ -281,49 +296,29 @@ public class arvoreB implements interfaceArvoreB {
 				nodeZ = findNodeForRemove(nodeT.getnodeFD());
 // 				verificar se o que está sendo removido é o esquerdo ou direito, pra setar a referencia para o pai.
 				
-				System.out.println(nodeZ.getElemento());
-				
 //				mudando as referências caso o node escolhido seja o filho da direita do node escolhido.
 				if (nodeZ.getNodePai().getnodeFD()==nodeZ) {
 					
-					nodeZ.getNodePai().setnodeFD(null);
-					nodeT.getNodePai().setnodeFD(nodeZ);
-					
-					nodeT.getnodeFE().setNodePai(nodeT);
 					nodeZ.setnodeFE(nodeT.getnodeFE());
+					nodeT.getnodeFE().setNodePai(nodeZ);
 					
 					nodeZ.setNodePai(nodeT.getNodePai());
-					
-//					verificando se o node removido tem filho da esquerda.
-//					if (nodeT.getnodeFE()!=null) {
-//				     nodeT.getnodeFE().setNodePai(nodeZ);
-//					 nodeZ.setnodeFE(nodeT.getnodeFE());
-//					}
+					nodeT.getNodePai().setnodeFD(nodeZ);
 					
 //					mudando as referências caso o node escolhido seja o filho da esquerda.
 				} else if (nodeZ.getNodePai().getnodeFE()==nodeZ) {
 					
-//					verificando se o node escolhido tem filho da direita.
-					if (nodeZ.getnodeFD()!=null) {
-						nodeZ.getnodeFD().setNodePai(nodeZ.getNodePai());
-						nodeZ.getNodePai().setnodeFE(nodeZ.getnodeFE());
-					} else {
-						nodeZ.getNodePai().setnodeFE(null);
-						nodeZ.setnodeFD(nodeZ.getNodePai());
-						
-						nodeZ.setNodePai(nodeT.getNodePai());
-						nodeT.getNodePai().setnodeFD(nodeZ);
-						
-//						verificando se o node removido tem filho da esquerda.
-//						if (nodeT.getnodeFE()!=null) {
-//					     nodeT.getnodeFE().setNodePai(nodeZ);
-//						 nodeZ.setnodeFE(nodeT.getnodeFE());
-//						}
+					nodeZ.setnodeFE(nodeT.getnodeFE());
+					nodeT.getnodeFE().setNodePai(nodeZ);
+					
+					nodeZ.setNodePai(nodeT.getNodePai());
+					nodeT.getNodePai().setnodeFD(nodeZ);
+					
+					nodeT.getnodeFD().setNodePai(nodeZ);
+					nodeZ.setnodeFD(nodeT.getnodeFD());
+					nodeT.getnodeFD().setnodeFE(null);
 					}
 
-				}
-				
-//				nodeZ.getNodePai().setnodeFD(null);
 				nodeT.setElemento(nodeZ.getElemento());
 				nodeZ = null;
 				tamanho--;
@@ -333,23 +328,6 @@ public class arvoreB implements interfaceArvoreB {
 		}
 		return elementoT;
 	}
-	
-//	public nodeArvoreB find(nodeArvoreB n, int elemento){
-//		if (n.elemento==elemento){
-//			System.out.println("Entrou no primeiro if");
-//			node = n;
-//		} else if (isInternal(n)) {
-//			System.out.println("Entrou no segundo if");
-//			if (n.getElemento()<elemento && n.getNodeFilhoD()!=null){
-//				System.out.println("Entrou no primeiro do segundo if");
-//				node = find(n.getNodeFilhoD(), elemento);
-//			} else if (n.getElemento()>elemento && n.getNodeFilhoE()!=null){
-//				System.out.println("Entrou no segundo do segundo if");
-//				node = find(n.getNodeFilhoE(), elemento);
-//			}
-//		}
-//		return node;
-//	}
 	
 	public nodeAB findNodeForRemove(nodeAB nodeT){
 		if (isExternal(nodeT)){
